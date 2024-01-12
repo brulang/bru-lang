@@ -80,8 +80,6 @@ article: {
   )
 }
 ```
-}
-```
 
 ### Comments
 Comments start with `#` and end with a newline `\n`.
