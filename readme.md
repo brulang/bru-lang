@@ -63,20 +63,24 @@ All keys are strings. Values can be a string, multimap, array or multiline strin
 #### Array
 Array is a list of values separated by a newline `\n`. Its enclosed in square brackets `[]`.
 ```groovy
-[
-  1
-  2
-  3
+tags: [
+  markup langauge
+  dsl
 ]
 ```
 
 #### Multiline String
 Multiline string is a string that spans multiple lines. Its enclosed in parenthesis `()`.
 ```groovy
-(
-  This is a multiline string.
-  It can span multiple lines.
-)
+article: {
+  title: Bru Lang
+  content: (
+    Bru is a simple markup language with json like semantics.
+    It's currently used in Bruno to save details of an api request in a file.
+  )
+}
+```
+}
 ```
 
 ### Comments
