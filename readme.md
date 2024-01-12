@@ -36,20 +36,20 @@ http: {
 There is only one primitive type in Bru - String.
 Its upto the consumer to interpret the string as a number, boolean, date, etc.
 
-A string can contain any character except `:`, `\n`
+A string can contain any character except `:` and `\n`
 
-### Complex Types
-There are 3 complex types in Bru.
+### Composite Types
+There are 3 composite types in Bru.
 * [Multimap](https://en.wikipedia.org/wiki/Multimap)
 * [Array](https://en.wikipedia.org/wiki/Array_data_structure)
-* Multiline String
+* [Multiline String](https://en.wikipedia.org/wiki/Here_document)
 
 #### Multimap
 Multimap is essentially a dictionary (key-value pair) that can have duplicate keys.
 Its enclosed in curly braces `{}`.
-Keys and values are separated by a colon `:` and key-value pairs are separated by a newline `\n`.
+Keys and Values are separated by a colon `:` and key-value pairs are separated by a newline `\n`.
 
-All keys are strings. Values can be multimap, array or multiline string.
+All keys are strings. Values can be a string, multimap, array or multiline string.
 ```groovy
 {
   name: Bru
