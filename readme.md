@@ -1,10 +1,10 @@
 # Bru Lang
 
-Bru is a simple markup language with json like semantics.
+Bru is a simple markup language with [JSON](https://json.org)-like semantics.
 
 It's currently used in [Bruno](https://www.usebruno.com) to save details of an api request in a file.
 
-Here is how a sample `.bru` file looks like.
+Here is a sample `.bru` file:
 ```groovy
 http: {
   method: 'GET'
@@ -30,6 +30,11 @@ http: {
 * Indentation based syntax
 * Annotations for providing additional information
 
+The top level of a `.bru` file is an implicit Multimap. It does not require
+or support braces.
+
+Except where noted, blank lines and whitespace are ignored.
+
 ## Data Types
 
 ### Primitive Types
@@ -39,7 +44,10 @@ There are 4 primitive types in Bru.
 * Boolean
 * Null
 
-A string can contain any character except `:` and `\n`
+The string type slightly differs from JSON in that a Bru string is
+a single-quoted and is always UTF-8. It may contain any printable UTF-8
+character except `'` or `\n`. Whitespace is considered significant inside of the
+quoted string.
 
 ### Composite Types
 There are 3 composite types in Bru.
@@ -48,11 +56,9 @@ There are 3 composite types in Bru.
 * [Multiline String](https://en.wikipedia.org/wiki/Here_document)
 
 #### Multimap
-Multimap is essentially a dictionary (key-value pair) that can have duplicate keys.
-Its enclosed in curly braces `{}`.
-Keys and Values are separated by a colon `:` and key-value pairs are separated by a newline `\n`.
+Multimap is a dictionary (key-value pair) with duplicate keys, enclosed in curly braces (`{}`). Keys and Values are separated by a colon `:` and key-value pairs are separated by a newline (`\n`).
 
-All keys are strings. Values can be primitive types or composite types.
+All keys are unquoted strings and must not contain spaces. Values may be primitive or composite types. Some contexts may offer further restrictions not required by the Bru language.
 
 ```groovy
 {
@@ -65,7 +71,7 @@ All keys are strings. Values can be primitive types or composite types.
 ```
 
 #### Array
-Array is a list of values separated by a newline `\n`. Its enclosed in square brackets `[]`.
+Array is a list of values separated by a newline (`\n`), enclosed in square brackets (`[]`).
 ```groovy
 tags: [
   'markup langauge'
@@ -74,7 +80,12 @@ tags: [
 ```
 
 #### Multiline String
-Multiline string is a string that spans multiple lines. Its enclosed in parenthesis `()`.
+Multiline string is a string that spans multiple lines, enclosed in parentheses (`()`). The
+content *must* begin on the line after the opening parenthesis (`(`) and the
+closing parenthesis (`)`) *must* be on the line after the end of the multiline
+string. Multiline strings are indented at least two spaces more than the key
+which contains them. This indentation is removed on parsing.
+
 ```groovy
 article: {
   title: 'Bru Lang'
@@ -85,10 +96,15 @@ article: {
 }
 ```
 
+In the above example, the content will be:
+
+```text
+Bru is a simple markup language with json like semantics.
+It's currently used in Bruno to save details of an api request in a file.
+```
+
 ### Annotations
-Annotations are used to provide additional information about a key-value pair.
-An annotation starts with `@` and ends with a newline `\n`.
-Optionally, Comma seperated args can be passed to an annotation.
+Annotations are used to provide additional information about a key-value pair. An annotation starts with (`@`) and ends with a newline (`\n`). Arguments may be passed to an annotation in parentheses (`()`) and separated by commas. Argument values may *only* be primitive types.
 
 ```groovy
 http: {
@@ -113,9 +129,14 @@ http: {
 
 
 ### Comments
+
 Comments start with `#` and end with a newline `\n`.
 ```bash
 # This is a comment
+
+http: {
+  # This is a comment, too
+}
 ```
 
 ### Original Authors
