@@ -142,4 +142,4 @@ http: {
 ### Original Authors
 * [Anoop M D](https://github.com/helloanoop)
 * [Ajai Shankar](https://github.com/ajaishankar)
-- [Austin Ziegler](https://github.com/halostatue)
+* [Austin Ziegler](https://github.com/halostatue)
