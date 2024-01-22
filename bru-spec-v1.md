@@ -1,5 +1,8 @@
 # Bru Lang (Specification Version 1.0)
 
+> [!NOTE]
+> This is a draft specification for Bru. It is not yet ratified.
+
 Bru is a data definition language optimized for use with [Bruno][] to describe
 an API request in a file.
 

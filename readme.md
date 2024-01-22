@@ -14,11 +14,11 @@ http: {
   }
   body: {
     type: 'xml'
-    data: (
+    data: '''
       <xml>
         <name>Bru</name>
       </xml>
-    )
+    '''
   }
 }
 ```
@@ -80,19 +80,19 @@ tags: [
 ```
 
 #### Multiline String
-Multiline string is a string that spans multiple lines, enclosed in parentheses (`()`). The
-content *must* begin on the line after the opening parenthesis (`(`) and the
-closing parenthesis (`)`) *must* be on the line after the end of the multiline
-string. Multiline strings are indented at least two spaces more than the key
+Multiline string is a string that spans multiple lines, enclosed in triple single/double quotes (`'''`). The
+content *must* begin on the line after the opening triple quote and the
+closing triple quote *must* be on the line after the end of the multiline
+string. Multiline strings must be indented two spaces more than the key
 which contains them. This indentation is removed on parsing.
 
 ```groovy
 article: {
   title: 'Bru Lang'
-  content: (
+  content: '''
     Bru is a simple markup language with json like semantics.
     It's currently used in Bruno to save details of an api request in a file.
-  )
+  '''
 }
 ```
 
@@ -142,3 +142,4 @@ http: {
 ### Original Authors
 * [Anoop M D](https://github.com/helloanoop)
 * [Ajai Shankar](https://github.com/ajaishankar)
+- [Austin Ziegler](https://github.com/halostatue)
